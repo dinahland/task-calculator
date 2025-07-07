@@ -53,11 +53,20 @@ public class App {
                 System.out.println("연산 결과: " + result);
                 result_arr.add(result);
             }
+
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             if(sc.next().equals("remove")){
                 result_arr.remove(0);
             }
-            System.out.println("현재 배열: " + result_arr);
+
+            System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            if(sc.next().equals("inquiry")){
+                System.out.print("[ ");
+                for(Integer n: result_arr){         /*for each 활용*/
+                    System.out.print(n + " ");      /*현재 저장된 연산 결과 모두 출력*/
+                }
+                System.out.println("]");
+            }
 
             //사용자가 exit 입력 시 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
