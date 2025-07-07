@@ -48,4 +48,8 @@ public class Calculator {
         result_arr.remove(0);
     }
 
+    public void inquiryResults(){
+        System.out.println(result_arr);
+    }
+
 }

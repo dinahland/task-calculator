@@ -1,6 +1,4 @@
 package calculator;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -38,11 +36,7 @@ public class App {
 
             System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if(sc.next().equals("inquiry")){
-                System.out.print("[ ");
-                for(Integer n: cal.get()){         /*for each 활용*/
-                    System.out.print(n + " ");      /*현재 저장된 연산 결과 모두 출력*/
-                }
-                System.out.println("]");
+                cal.inquiryResults();
             }
 
             //사용자가 exit 입력 시 반복 종료
