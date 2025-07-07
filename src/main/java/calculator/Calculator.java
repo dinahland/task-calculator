@@ -42,4 +42,10 @@ public class Calculator {
         result_arr.add(result);
         return result;
     }
+
+    /*가장 먼저 저장된 데이터 삭제*/
+    public void removeResult(){
+        result_arr.remove(0);
+    }
+
 }
