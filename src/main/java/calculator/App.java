@@ -1,6 +1,8 @@
 package calculator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -8,8 +10,7 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int[] result_arr = new int[10]; /*연산 결과 10개를 저장할 수 있는 배열*/
-        int count = 0; /*연산 결과를 배열의 빈 곳에 저장하기 위함*/
+        List<Integer> result_arr = new ArrayList<>();   /*Collection 리스트 선언*/
 
         //exit 입력 전까지 반복
         while(true){
@@ -50,16 +51,13 @@ public class App {
             }
             if(!error) {
                 System.out.println("연산 결과: " + result);
-                if(count == result_arr.length){                      /*연산 결과가 10개를 초과하는 경우*/
-                    for(int i = 0; i < result_arr.length-1; i++){
-                        result_arr[i] = result_arr[i+1];             /*result_arr[0] 삭제, 모든 값 한 칸씩 앞으로 이동*/
-                    }
-                    count--;                                         /*새로운 결과는 마지막 인덱스에 저장*/
-                }
-                result_arr[count] = result;
-                count++;
+                result_arr.add(result);
             }
-            System.out.println("현재 배열: " + Arrays.toString(result_arr));
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            if(sc.next().equals("remove")){
+                result_arr.remove(0);
+            }
+            System.out.println("현재 배열: " + result_arr);
 
             //사용자가 exit 입력 시 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
