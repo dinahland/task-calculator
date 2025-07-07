@@ -1,7 +1,4 @@
 package calculator;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -9,7 +6,7 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        List<Integer> result_arr = new ArrayList<>();   /*Collection 리스트 선언*/
+        Calculator cal = new Calculator();  /* Calculator 인스턴스 생성*/
 
         //exit 입력 전까지 반복
         while(true){
@@ -24,44 +21,23 @@ public class App {
             String symbol = sc.next();
             char operator = symbol.charAt(0);
 
-            int result = 0; /*결과 저장*/
-            boolean error = false; /*부적절한 입력 확인*/
-            switch (operator){
-                case '+':
-                    result = num1 + num2;
-                    break;
-                case '-':
-                    result = num1 - num2;
-                    break;
-                case '*':
-                    result = num1 * num2;
-                    break;
-                case '/':
-                    if(num2 == 0){
-                        System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다. ");
-                        error = true;
-                    } else{
-                        result = num1 / num2;
-                    }
-                    break;
-                default:
-                    System.out.println("사칙연산 기호가 잘못 입력되었습니다.");
-                    error = true;
-            }
-            if(!error) {
+            /*예외 처리: Calculator 클래스의 메서드를 호출하여 사칙연산 수행*/
+            try {
+                int result = cal.calculate(num1, num2, operator);
                 System.out.println("연산 결과: " + result);
-                result_arr.add(result);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
 
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             if(sc.next().equals("remove")){
-                result_arr.remove(0);
+                cal.result_arr.remove(0);
             }
 
             System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if(sc.next().equals("inquiry")){
                 System.out.print("[ ");
-                for(Integer n: result_arr){         /*for each 활용*/
+                for(Integer n: cal.result_arr){         /*for each 활용*/
                     System.out.print(n + " ");      /*현재 저장된 연산 결과 모두 출력*/
                 }
                 System.out.println("]");

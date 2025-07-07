@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Calculator {
     /*연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성*/
-    private List<Integer> result_arr = new ArrayList<>();
+    public List<Integer> result_arr = new ArrayList<>();
 
     /*정수 2개와 연산 기호를 매개변수로 받아 연산한 다음 결과 값 반환*/
     /*분모가 0인 경우, 연산 기호가 잘못된 경우는 의도적으로 예외를 발생시킨 다음 throws*/
