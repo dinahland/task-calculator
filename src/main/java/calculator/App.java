@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
@@ -49,9 +50,16 @@ public class App {
             }
             if(!error) {
                 System.out.println("연산 결과: " + result);
+                if(count == result_arr.length){                      /*연산 결과가 10개를 초과하는 경우*/
+                    for(int i = 0; i < result_arr.length-1; i++){
+                        result_arr[i] = result_arr[i+1];             /*result_arr[0] 삭제, 모든 값 한 칸씩 앞으로 이동*/
+                    }
+                    count--;                                         /*새로운 결과는 마지막 인덱스에 저장*/
+                }
                 result_arr[count] = result;
                 count++;
             }
+            System.out.println("현재 배열: " + Arrays.toString(result_arr));
 
             //사용자가 exit 입력 시 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
