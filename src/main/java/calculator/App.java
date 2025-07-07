@@ -7,6 +7,9 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        int[] result_arr = new int[10]; /*연산 결과 10개를 저장할 수 있는 배열*/
+        int count = 0; /*연산 결과를 배열의 빈 곳에 저장하기 위함*/
+
         //exit 입력 전까지 반복
         while(true){
             //정수 2개 입력 받음
@@ -44,7 +47,11 @@ public class App {
                     System.out.println("사칙연산 기호가 잘못 입력되었습니다.");
                     error = true;
             }
-            if(!error) System.out.println("연산 결과: " + result);
+            if(!error) {
+                System.out.println("연산 결과: " + result);
+                result_arr[count] = result;
+                count++;
+            }
 
             //사용자가 exit 입력 시 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
