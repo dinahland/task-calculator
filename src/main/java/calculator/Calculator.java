@@ -5,7 +5,12 @@ import java.util.List;
 
 public class Calculator {
     /*연산 결과를 저장하는 컬렉션 타입 필드 (외부에서 접근 불가)*/
-    private List<Integer> result_arr = new ArrayList<>();
+    private List<Integer> result_arr;
+
+    /*생성 시 필드가 초기화되도록 생성자 구현*/
+    public Calculator(){
+        result_arr = new ArrayList<>();
+    }
 
     public List<Integer> get(){
         return result_arr;
