@@ -1,23 +1,37 @@
-package calculator;
+package level2;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calculator {
-    /*연산 결과를 저장하는 컬렉션 타입 필드 (외부에서 접근 불가)*/
-    private List<Integer> result_arr;
+class Calculator {
+    /* static: 클래스 단위로 존재하며 모든 인스턴스가 공유
+       final: 한 번 초기화되면 변경 불가능
+       PI는 모든 인스턴스가 고정된 값을 사용하고 변경될 수 없으므로 static final (상수)로 선언함 */
+    public static final double PI = 3.141592;
+
+    private List<Integer> result_arr;   /*연산 결과 저장*/
+    private List<Double> circleArea;    /*원의 넓이 결과 저장*/
 
     /*생성 시 필드가 초기화되도록 생성자 구현*/
     public Calculator(){
         result_arr = new ArrayList<>();
+        circleArea = new ArrayList<>();
     }
 
-    public List<Integer> get(){
+    public List<Integer> getResult_arr(){
         return result_arr;
     }
 
-    public void set(List<Integer> result_arr){
+    public void setResult_arr(List<Integer> result_arr){
         this.result_arr = result_arr;
+    }
+
+    public List<Double> getCircleArea() {
+        return circleArea;
+    }
+
+    public void setCircleArea(List<Double> circleArea) {
+        this.circleArea = circleArea;
     }
 
     /*정수 2개와 연산 기호를 매개변수로 받아 연산한 다음 결과 값 반환*/
@@ -53,8 +67,22 @@ public class Calculator {
         result_arr.remove(0);
     }
 
+    /*현재 저장되어 있는 연산 결과 모두 출력*/
     public void inquiryResults(){
         System.out.println(result_arr);
     }
+
+    /*반지름을 매개변수로 받아 원의 넓이를 반환하는 메서드*/
+    public double calculateCircleArea(double radius){
+        double area = radius * radius * PI;
+        circleArea.add(area);
+        return area;
+    }
+
+    /*현재 저장되어 있는 원의 넓이 모두 출력*/
+    public void inquiryCircleAreas(){
+        System.out.println(circleArea);
+    }
+
 
 }
