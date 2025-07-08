@@ -4,6 +4,20 @@ import java.util.List;
 
 class ArithmeticCalculator extends Calculator {
 
+    /*사칙연산의 각 기능을 담당하는 클래스를 멤버 필드로 선언 (포함 관계)*/
+    private final AddOperator addOperator;
+    private final SubtractOperator subtractOperator;
+    private final MultiplyOperator multiplyOperator;
+    private final DivideOperator divideOperator;
+
+    /*인스턴스 생성 시 필드(클래스) 초기화*/
+    public ArithmeticCalculator(){
+        addOperator = new AddOperator();
+        subtractOperator = new SubtractOperator();
+        multiplyOperator = new MultiplyOperator();
+        divideOperator = new DivideOperator();
+    }
+
     public List<Double> get(){
         return results;
     }
@@ -18,19 +32,19 @@ class ArithmeticCalculator extends Calculator {
         double result;
         switch (operator){
             case '+':
-                result = num1 + num2;
+                result = addOperator.operate(num1, num2);
                 break;
             case '-':
-                result = num1 - num2;
+                result = subtractOperator.operate(num1, num2);
                 break;
             case '*':
-                result = num1 * num2;
+                result = multiplyOperator.operate(num1, num2);
                 break;
             case '/':
                 if(num2 == 0){
                     throw new Exception("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
                 } else{
-                    result = num1 / num2;
+                    result = divideOperator.operate(num1, num2);
                 }
                 break;
             default:
