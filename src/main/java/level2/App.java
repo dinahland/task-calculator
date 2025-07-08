@@ -7,7 +7,8 @@ class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        Calculator cal = new Calculator();  /* Calculator 인스턴스 생성*/
+        ArithmeticCalculator arithmetic = new ArithmeticCalculator();
+        CircleCalculator circle = new CircleCalculator();
 
         //exit 입력 전까지 반복
         while(true){
@@ -21,9 +22,9 @@ class App {
 
                     //정수 2개 입력 받음
                     System.out.print("첫 번째 숫자를 입력하세요: ");
-                    int num1 = sc.nextInt();
+                    double num1 = sc.nextInt();
                     System.out.print("두 번째 숫자를 입력하세요: ");
-                    int num2 = sc.nextInt();
+                    double num2 = sc.nextInt();
 
                     //사칙연산 기호 입력 받아 char 형태로 저장
                     System.out.print("사칙연산 기호를 입력하세요: ");
@@ -32,7 +33,7 @@ class App {
 
                     /*예외 처리: Calculator 클래스의 메서드를 호출하여 사칙연산 수행*/
                     try {
-                        int result = cal.calculate(num1, num2, operator);
+                        double result = arithmetic.calculate(num1, num2, operator);
                         System.out.println("연산 결과: " + result);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -40,24 +41,24 @@ class App {
 
                     System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
                     if(sc.next().equals("remove")){
-                        cal.removeResult();
+                        arithmetic.removeResult();
                     }
 
                     System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                     if(sc.next().equals("inquiry")){
-                        cal.inquiryResults();
+                        arithmetic.inquiryResults();
                     }
                     break;
                 case 2:
                     System.out.println("원의 넓이를 계산합니다. ");
                     System.out.print("반지름을 입력하세요: ");
                     double radius = sc.nextDouble();
-                    double area = cal.calculateCircleArea(radius);
+                    double area = circle.calculateCircleArea(radius);
                     System.out.println("반지름이 " + radius + "인 원의 넓이: " + area);
 
                     System.out.println("저장된 원의 넓이들을 조회하시겠습니까? (inquiry 입력 시 조회)");
                     if(sc.next().equals("inquiry")){
-                        cal.inquiryCircleAreas();
+                        circle.inquiryResults();
                     }
                     break;
                 default:
