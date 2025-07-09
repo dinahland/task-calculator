@@ -22,9 +22,23 @@ class App {
 
                     //정수 2개 입력 받음
                     System.out.print("첫 번째 숫자를 입력하세요: ");
-                    double num1 = sc.nextInt();
+                    String n1 = sc.next();
                     System.out.print("두 번째 숫자를 입력하세요: ");
-                    double num2 = sc.nextInt();
+                    String n2 = sc.next();
+
+                    Number num1;
+                    if(n1.contains(".")){                   /*n1 문자열에 .이 있으면*/
+                        num1 = Double.parseDouble(n1);      /*num1에 Double 타입으로 변환해서 저장*/
+                    } else{                                 /*없으면*/
+                        num1 = Integer.parseInt(n1);        /*num1에 Int 타입으로 변환해서 저장*/
+                    }
+
+                    Number num2;                            /*위와 동일*/
+                    if(n2.contains(".")){
+                        num2 = Double.parseDouble(n2);
+                    } else{
+                        num2 = Integer.parseInt(n2);
+                    }
 
                     //사칙연산 기호 입력 받아 char 형태로 저장
                     System.out.print("사칙연산 기호를 입력하세요: ");

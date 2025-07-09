@@ -9,7 +9,7 @@ abstract class Calculator {
        PI는 모든 인스턴스가 고정된 값을 사용하고 변경될 수 없으므로 static final (상수)로 선언함 */
     public static final double PI = 3.141592;
 
-    public List<Double> results;
+    public List<Number> results;
 
     /*생성 시 필드가 초기화되도록 생성자 구현*/
     public Calculator(){

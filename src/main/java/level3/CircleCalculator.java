@@ -4,11 +4,11 @@ import java.util.List;
 
 class CircleCalculator extends Calculator {
 
-    public List<Double> get() {
+    public List<Number> get() {
         return results;
     }
 
-    public void set(List<Double> results) {
+    public void set(List<Number> results) {
         this.results = results;
     }
 
