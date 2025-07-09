@@ -10,10 +10,12 @@ abstract class Calculator {
     public static final double PI = 3.141592;
 
     public List<Number> results;
+    public List<String> errorMessages;  /*오류 메시지 저장용 리스트*/
 
     /*생성 시 필드가 초기화되도록 생성자 구현*/
     public Calculator(){
         results = new ArrayList<>();
+        errorMessages = new ArrayList<>();
     }
 
     /*가장 먼저 저장된 데이터 삭제*/

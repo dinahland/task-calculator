@@ -51,6 +51,7 @@ class App {
                         System.out.println("연산 결과: " + result);
                     } catch (ArithmeticException e) {
                         System.out.println(e.getMessage());
+                        arithmetic.errorMessages.add(e.getMessage()); /*오류 메시지 배열에 추가*/
                     }
 
                     System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
@@ -72,7 +73,6 @@ class App {
                         st = Integer.parseInt(standard);          /*st에 Int 타입으로 변환해서 저장*/
                     }
                     arithmetic.printAbove(st);
-
                     break;
                 case 2:
                     System.out.println("원의 넓이를 계산합니다. ");
@@ -98,8 +98,6 @@ class App {
                 break;
             }
         }
-
-
 
     }
 }
