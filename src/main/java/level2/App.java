@@ -35,7 +35,7 @@ class App {
                     try {
                         double result = arithmetic.calculate(num1, num2, operator);
                         System.out.println("연산 결과: " + result);
-                    } catch (Exception e) {
+                    } catch (ArithmeticException e) {
                         System.out.println(e.getMessage());
                     }
 
