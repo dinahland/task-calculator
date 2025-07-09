@@ -1,5 +1,6 @@
 package level3;
 import java.util.List;
+import java.util.stream.Collectors;
 
 enum OperatorType{
     ADD('+'){
@@ -96,5 +97,15 @@ class ArithmeticCalculator extends Calculator {      /*제네릭 클래스로 �
     /*현재 저장되어 있는 연산 결과 모두 출력*/
     public void inquiryResults(){
         System.out.println(results);
+    }
+
+    /*저장되어 있는 연산 결과 중 주어진 값보다 큰 수만 출력*/
+    public void printAbove(Number standard){
+        double st = standard.doubleValue();
+        System.out.print(st + "보다 큰 연산 결과: ");
+        System.out.println(results.stream()         /*results를 스트림으로 변환*/
+                .map(n -> n.doubleValue())  /*각 요소를 double 타입으로 변환*/
+                .filter(n -> n > st)         /*기준값보다 큰 수만 남김*/
+                .collect(Collectors.toList()));     /*결과를 List로 수집*/
     }
 }

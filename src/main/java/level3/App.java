@@ -62,6 +62,17 @@ class App {
                     if(sc.next().equals("inquiry")){
                         arithmetic.inquiryResults();
                     }
+
+                    System.out.println("수를 입력하세요. 저장된 연산 결과들 중 입력값보다 큰 수들을 조회합니다.");
+                    String standard = sc.next();
+                    Number st;
+                    if(standard.contains(".")){                   /*standard 문자열에 .이 있으면*/
+                        st = Double.parseDouble(standard);        /*st에 Double 타입으로 변환해서 저장*/
+                    } else{                                       /*없으면*/
+                        st = Integer.parseInt(standard);          /*st에 Int 타입으로 변환해서 저장*/
+                    }
+                    arithmetic.printAbove(st);
+
                     break;
                 case 2:
                     System.out.println("원의 넓이를 계산합니다. ");
