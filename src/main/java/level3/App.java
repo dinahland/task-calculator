@@ -1,8 +1,11 @@
 package level3;
 
+import level3.calculator.ArithmeticCalculator;
+import level3.calculator.CircleCalculator;
+
 import java.util.Scanner;
 
-class App {
+public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -20,25 +23,15 @@ class App {
                 case 1:
                     System.out.println("사칙연산을 진행합니다.");
 
-                    //정수 2개 입력 받음
+                    //실수 2개 입력 받음
                     System.out.print("첫 번째 숫자를 입력하세요: ");
-                    String n1 = sc.next();
+                    double n1 = sc.nextDouble();
                     System.out.print("두 번째 숫자를 입력하세요: ");
-                    String n2 = sc.next();
+                    double n2 = sc.nextDouble();
 
-                    Number num1;
-                    if(n1.contains(".")){                   /*n1 문자열에 .이 있으면*/
-                        num1 = Double.parseDouble(n1);      /*num1에 Double 타입으로 변환해서 저장*/
-                    } else{                                 /*없으면*/
-                        num1 = Integer.parseInt(n1);        /*num1에 Int 타입으로 변환해서 저장*/
-                    }
-
-                    Number num2;                            /*위와 동일*/
-                    if(n2.contains(".")){
-                        num2 = Double.parseDouble(n2);
-                    } else{
-                        num2 = Integer.parseInt(n2);
-                    }
+                    //Number 타입으로 저장
+                    Number num1 = n1;
+                    Number num2 = n2;
 
                     //사칙연산 기호 입력 받아 char 형태로 저장
                     System.out.print("사칙연산 기호를 입력하세요: ");
@@ -54,24 +47,11 @@ class App {
                         arithmetic.errorMessages.add(e.getMessage()); /*오류 메시지 배열에 추가*/
                     }
 
-                    System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-                    if(sc.next().equals("remove")){
-                        arithmetic.removeResult();
-                    }
-
-                    System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
-                    if(sc.next().equals("inquiry")){
-                        arithmetic.inquiryResults();
-                    }
+                    arithmetic.removeResult(sc);      /*가장 먼저 저장된 연산결과 삭제 여부를 사용자에게 입력 받고 처리함*/
+                    arithmetic.inquiryResults(sc);    /*연산결과 리스트 조회 여부를 사용자에게 입력 받고 처리함*/
 
                     System.out.println("수를 입력하세요. 저장된 연산 결과들 중 입력값보다 큰 수들을 조회합니다.");
-                    String standard = sc.next();
-                    Number st;
-                    if(standard.contains(".")){                   /*standard 문자열에 .이 있으면*/
-                        st = Double.parseDouble(standard);        /*st에 Double 타입으로 변환해서 저장*/
-                    } else{                                       /*없으면*/
-                        st = Integer.parseInt(standard);          /*st에 Int 타입으로 변환해서 저장*/
-                    }
+                    Number st = sc.nextDouble();
                     arithmetic.printAbove(st);
                     break;
                 case 2:
@@ -81,10 +61,9 @@ class App {
                     double area = circle.calculateCircleArea(radius);
                     System.out.println("반지름이 " + radius + "인 원의 넓이: " + area);
 
-                    System.out.println("저장된 원의 넓이들을 조회하시겠습니까? (inquiry 입력 시 조회)");
-                    if(sc.next().equals("inquiry")){
-                        circle.inquiryResults();
-                    }
+                    circle.removeResult(sc);      /*가장 먼저 저장된 원의 넓이 삭제 여부를 사용자에게 입력 받고 처리함*/
+                    circle.inquiryResults(sc);    /*원의 넓이 리스트 조회 여부를 사용자에게 입력 받고 처리함*/
+
                     break;
                 default:
                     System.out.println("1 또는 2를 입력해주세요.");

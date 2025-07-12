@@ -1,9 +1,12 @@
-package level2;
+package level2.calculator;
+
+import level2.operator.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-class ArithmeticCalculator extends Calculator {
+public class ArithmeticCalculator extends Calculator {
 
     /*사칙연산의 각 기능을 담당하는 클래스들을 저장하는 컬렉션 타입 변수*/
     private final List<Operator> operators;
@@ -41,12 +44,18 @@ class ArithmeticCalculator extends Calculator {
     }
 
     /*가장 먼저 저장된 연산 결과 삭제*/
-    public void removeResult(){
-        results.remove(0);
+    public void removeResult(Scanner sc){
+        System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+        if(sc.next().equals("remove")){
+            results.remove(0);
+        }
     }
 
     /*현재 저장되어 있는 연산 결과 모두 출력*/
-    public void inquiryResults(){
-        System.out.println(results);
+    public void inquiryResults(Scanner sc){
+        System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+        if(sc.next().equals("inquiry")){
+            System.out.println(results);
+        }
     }
 }

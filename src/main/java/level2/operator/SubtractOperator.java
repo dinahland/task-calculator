@@ -1,6 +1,6 @@
-package level2;
+package level2.operator;
 
-class SubtractOperator implements Operator{
+public class SubtractOperator implements Operator{
 
     public boolean isAvailable(char operator) {
         return operator == '-';

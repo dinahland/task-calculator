@@ -1,8 +1,11 @@
 package level2;
 
+import level2.calculator.ArithmeticCalculator;
+import level2.calculator.CircleCalculator;
+
 import java.util.Scanner;
 
-class App {
+public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -39,15 +42,8 @@ class App {
                         System.out.println(e.getMessage());
                     }
 
-                    System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-                    if(sc.next().equals("remove")){
-                        arithmetic.removeResult();
-                    }
-
-                    System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
-                    if(sc.next().equals("inquiry")){
-                        arithmetic.inquiryResults();
-                    }
+                    arithmetic.removeResult(sc);      /*가장 먼저 저장된 연산결과 삭제 여부를 사용자에게 입력 받고 처리함*/
+                    arithmetic.inquiryResults(sc);    /*연산결과 리스트 조회 여부를 사용자에게 입력 받고 처리함*/
                     break;
                 case 2:
                     System.out.println("원의 넓이를 계산합니다. ");
@@ -56,10 +52,8 @@ class App {
                     double area = circle.calculateCircleArea(radius);
                     System.out.println("반지름이 " + radius + "인 원의 넓이: " + area);
 
-                    System.out.println("저장된 원의 넓이들을 조회하시겠습니까? (inquiry 입력 시 조회)");
-                    if(sc.next().equals("inquiry")){
-                        circle.inquiryResults();
-                    }
+                    circle.removeResult(sc);      /*가장 먼저 저장된 원의 넓이 삭제 여부를 사용자에게 입력 받고 처리함*/
+                    circle.inquiryResults(sc);    /*원의 넓이 리스트 조회 여부를 사용자에게 입력 받고 처리함*/
                     break;
                 default:
                     System.out.println("1 또는 2를 입력해주세요.");
@@ -67,8 +61,7 @@ class App {
 
             //사용자가 exit 입력 시 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            String isExit = sc.next();
-            if(isExit.equals("exit")) {
+            if(sc.next().equals("exit")) {
                 System.out.println("계산기를 종료합니다.");
                 break;
             }

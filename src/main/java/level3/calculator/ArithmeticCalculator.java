@@ -1,5 +1,6 @@
-package level3;
+package level3.calculator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 enum OperatorType{
@@ -8,7 +9,7 @@ enum OperatorType{
             return num1 + num2;
         }
     },
-    SUBTRACK('-'){
+    SUBTRACT('-'){
         public double operate(double num1, double num2){
             return num1 - num2;
         }
@@ -52,7 +53,7 @@ enum OperatorType{
     public abstract double operate(double num1, double num2);
 }
 
-class ArithmeticCalculator extends Calculator {      /*제네릭 클래스로 변경*/
+public class ArithmeticCalculator extends Calculator {      /*제네릭 클래스로 변경*/
 
     /*사칙연산의 각 기능을 담당하는 enum 타입들을 저장하는 List*/
     private final List<OperatorType> operators;
@@ -88,24 +89,28 @@ class ArithmeticCalculator extends Calculator {      /*제네릭 클래스로 �
     }
 
     /*가장 먼저 저장된 연산 결과 삭제*/
-    public void removeResult(){
-        if(!results.isEmpty()){
+    public void removeResult(Scanner sc){
+        System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+        if(sc.next().equals("remove")){
             results.remove(0);
         }
     }
 
     /*현재 저장되어 있는 연산 결과 모두 출력*/
-    public void inquiryResults(){
-        System.out.println(results);
+    public void inquiryResults(Scanner sc){
+        System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+        if(sc.next().equals("inquiry")){
+            System.out.println(results);
+        }
     }
 
     /*저장되어 있는 연산 결과 중 주어진 값보다 큰 수만 출력*/
-    public void printAbove(Number standard){
-        double st = standard.doubleValue();
+    public void printAbove(Number st){
+        double standard = st.doubleValue();
         System.out.print(st + "보다 큰 연산 결과: ");
         System.out.println(results.stream()         /*results를 스트림으로 변환*/
                 .map(n -> n.doubleValue())  /*각 요소를 double 타입으로 변환*/
-                .filter(n -> n > st)         /*기준값보다 큰 수만 남김*/
+                .filter(n -> n > standard)         /*기준값보다 큰 수만 남김*/
                 .collect(Collectors.toList()));     /*결과를 List로 수집*/
     }
 }

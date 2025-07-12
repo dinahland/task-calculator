@@ -1,6 +1,6 @@
-package level2;
+package level2.operator;
 
-class ModOperator implements Operator{
+public class ModOperator implements Operator{
 
     public boolean isAvailable(char operator) {
         return operator == '%';

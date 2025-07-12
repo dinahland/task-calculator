@@ -1,8 +1,9 @@
-package level3;
+package level3.calculator;
 
 import java.util.List;
+import java.util.Scanner;
 
-class CircleCalculator extends Calculator {
+public class CircleCalculator extends Calculator {
 
     public List<Number> get() {
         return results;
@@ -20,15 +21,19 @@ class CircleCalculator extends Calculator {
     }
 
     /*가장 먼저 저장된 원의 넓이 삭제*/
-    void removeResult() {
-        if(!results.isEmpty()){
+    public void removeResult(Scanner sc) {
+        System.out.println("가장 먼저 저장된 원의 넓이를 삭제하시겠습니까? (remove 입력 시 삭제)");
+        if(sc.next().equals("remove")){
             results.remove(0);
         }
     }
 
     /*현재 저장되어 있는 원의 넓이 모두 출력*/
-    public void inquiryResults(){
-        System.out.println(results);
+    public void inquiryResults(Scanner sc){
+        System.out.println("저장된 원의 넓이들을 조회하시겠습니까? (inquiry 입력 시 조회)");
+        if(sc.next().equals("inquiry")) {
+            System.out.println(results);
+        }
     }
 
 }

@@ -9,7 +9,7 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        List<Integer> result_arr = new ArrayList<>();   /*Collection 리스트 선언*/
+        List<Double> result_arr = new ArrayList<>();   /*Collection 리스트 선언*/
 
         //exit 입력 전까지 반복
         while(true){
@@ -24,7 +24,7 @@ public class App {
             String symbol = sc.next();
             char operator = symbol.charAt(0);
 
-            int result = 0; /*결과 저장*/
+            double result = 0; /*결과 저장*/
             boolean error = false; /*부적절한 입력 확인*/
             switch (operator){
                 case '+':
@@ -41,7 +41,7 @@ public class App {
                         System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다. ");
                         error = true;
                     } else{
-                        result = num1 / num2;
+                        result = (double) num1 / num2;
                     }
                     break;
                 default:
@@ -55,16 +55,16 @@ public class App {
 
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             if(sc.next().equals("remove")){
-                result_arr.remove(0);
+                if(!result_arr.isEmpty()){
+                    result_arr.remove(0);
+                } else{
+                    System.out.println("삭제할 연산 결과가 없습니다.");
+                }
             }
 
             System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if(sc.next().equals("inquiry")){
-                System.out.print("[ ");
-                for(Integer n: result_arr){         /*for each 활용*/
-                    System.out.print(n + " ");      /*현재 저장된 연산 결과 모두 출력*/
-                }
-                System.out.println("]");
+                System.out.println(result_arr);
             }
 
             //사용자가 exit 입력 시 반복 종료

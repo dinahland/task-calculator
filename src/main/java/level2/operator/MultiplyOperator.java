@@ -1,6 +1,6 @@
-package level2;
+package level2.operator;
 
-class MultiplyOperator implements Operator{
+public class MultiplyOperator implements Operator{
 
     public boolean isAvailable(char operator) {
         return operator == '*';
